@@ -25,5 +25,7 @@ private:
     bool bwd;
     bool left;
     bool right;
+
+	float oldRotation;
 };
 
