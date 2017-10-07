@@ -20,10 +20,10 @@ public:
 private:
     sre::Camera * camera;
 
-    // todo remove
-    bool fwd;
-    bool bwd;
-    bool left;
-    bool right;
+
+	glm::vec3 right;
+
+	float oldRotation;
+	glm::vec3 oldPosition;
 };
 
