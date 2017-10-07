@@ -22,13 +22,8 @@ FirstPersonController::FirstPersonController(sre::Camera* camera)
 void FirstPersonController::update(float deltaTime)
 {
 	vec3 direction(cos(radians(rotation)), 0, sin(radians(rotation)));
-
-	//	view = rotate(view, radians(rotation - oldRotation), vec3{0,1,0});
-	//	view = translate(view, position - oldPosition);
-	//	camera->setViewTransform(view);
 	auto view = lookAt(position, position + direction, {0, 1, 0});
 	camera->setViewTransform(view);
-	//	camera->lookAt(position, position + normalize(direction), {0,1,0});
 	if (rotation != oldRotation)
 		oldRotation = rotation;
 	if (position != oldPosition)
