@@ -76,15 +76,28 @@ void Wolf3D::addCube(std::vector<glm::vec3>& vertexPositions, std::vector<glm::v
     vertexPositions.insert(vertexPositions.end(), {
             glm::vec3(-0.5,-0.5,0.5), glm::vec3(0.5,-0.5,0.5), glm::vec3(-0.5,0.5,0.5),
             glm::vec3(0.5,0.5,0.5), glm::vec3(-0.5,0.5,0.5), glm::vec3(0.5,-0.5,0.5),
-            glm::vec3(0.5,-0.5,0.5), glm::vec3(0.5,-0.5,-0.5), glm::vec3(0.5,0.5,-0.5),
-            glm::vec3(0.5,0.5,-0.5), glm::vec3(0.5,0.5,0.5), glm::vec3(0.5,-0.5,-0.5)
+
+            glm::vec3(0.5,-0.5,0.5), glm::vec3(0.5,-0.5,-0.5), glm::vec3(0.5,0.5,0.5),
+            glm::vec3(0.5,0.5,-0.5), glm::vec3(0.5,0.5,0.5), glm::vec3(0.5,-0.5,-0.5),
+
+            glm::vec3(0.5,-0.5,-0.5), glm::vec3(-0.5,-0.5,-0.5), glm::vec3(0.5,0.5,-0.5),
+            glm::vec3(-0.5,0.5,-0.5), glm::vec3(0.5,0.5,-0.5), glm::vec3(-0.5,-0.5,-0.5),
+
+            glm::vec3(-0.5,-0.5,-0.5), glm::vec3(-0.5,-0.5,0.5), glm::vec3(-0.5,0.5,-0.5),
+            glm::vec3(-0.5,0.5,0.5), glm::vec3(-0.5,0.5,-0.5), glm::vec3(-0.5,-0.5,0.5)
     });
+
+    for (int i = 0; i<vertexPositions.size(); ++i)
+    {
+        vertexPositions[i].x += x/2;
+        vertexPositions[i].z += z/2;
+    }
 
     glm::vec2 textureSize(2048, 4096);
     glm::vec2 tileSize(64, 64);
     glm::vec2 tileSizeWithBorder(65, 65);
 
-    glm::vec2 min = vec2(0, 42*tileSizeWithBorder.y)/textureSize;
+    glm::vec2 min = vec2(tileSizeWithBorder.x*type, 42*tileSizeWithBorder.y)/textureSize;
     glm::vec2 max = min+tileSize/textureSize;
     textureCoordinates.insert(textureCoordinates.end(), {
             glm::vec4(min.x,min.y,0,0), glm::vec4(max.x,min.y,0,0), glm::vec4(min.x,max.y,0,0),
