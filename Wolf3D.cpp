@@ -13,11 +13,12 @@ Wolf3D::Wolf3D()
 	: fpsController(&camera)
 {
 	r.init();
+	r.setWindowSize(vec2{ 800, 600 });
 	init();
 
-//	 Enable mouse lock
-		SDL_SetWindowGrab(r.getSDLWindow(), SDL_TRUE);
-		SDL_SetRelativeMouseMode(SDL_TRUE);
+	//	 Enable mouse lock
+	SDL_SetWindowGrab(r.getSDLWindow(), SDL_TRUE);
+	SDL_SetRelativeMouseMode(SDL_TRUE);
 	r.frameUpdate = [&](float deltaTime)
 	{
 		update(deltaTime);
