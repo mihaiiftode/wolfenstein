@@ -21,7 +21,20 @@ FirstPersonController::FirstPersonController(sre::Camera* camera)
 
 void FirstPersonController::update(float deltaTime)
 {
+
 	vec3 direction(cos(radians(rotation)), 0, sin(radians(rotation)));
+	rightVector = vec3(cos(radians(rotation + 90)), 0, sin(radians(rotation + 90)));
+
+	if (forward)
+		position += direction * deltaTime;
+	if (back)
+		position -= direction * deltaTime;
+	if (left)
+		position -= rightVector * deltaTime;
+	if (right)
+		position += rightVector * deltaTime;
+
+
 	auto view = lookAt(position, position + direction, {0, 1, 0});
 	camera->setViewTransform(view);
 	if (rotation != oldRotation)
@@ -32,24 +45,10 @@ void FirstPersonController::update(float deltaTime)
 
 void FirstPersonController::onKey(SDL_Event& event)
 {
-	vec3 direction(cos(radians(rotation)), 0, sin(radians(rotation)));
-	right = vec3(cos(radians(rotation + 90)), 0, sin(radians(rotation  + 90)));
-	if (event.key.keysym.sym == SDLK_w && event.type == SDL_KEYDOWN)
-	{
-		position += direction;
-	}
-	if (event.key.keysym.sym == SDLK_s && event.type == SDL_KEYDOWN)
-	{
-		position -= direction;
-	}
-	if (event.key.keysym.sym == SDLK_a && event.type == SDL_KEYDOWN)
-	{
-		position -= right;
-	}
-	if (event.key.keysym.sym == SDLK_d && event.type == SDL_KEYDOWN)
-	{
-		position += right;
-	}
+	forward = event.key.keysym.sym == SDLK_w && event.type == SDL_KEYDOWN ? true : event.key.keysym.sym == SDLK_w && event.type != SDL_KEYUP;
+	back = event.key.keysym.sym == SDLK_s && event.type == SDL_KEYDOWN ? true : event.key.keysym.sym == SDLK_s && event.type != SDL_KEYUP;
+	left = event.key.keysym.sym == SDLK_a && event.type == SDL_KEYDOWN ? true : event.key.keysym.sym == SDLK_a && event.type != SDL_KEYUP;
+	right = event.key.keysym.sym == SDLK_d && event.type == SDL_KEYDOWN ? true : event.key.keysym.sym == SDLK_d && event.type != SDL_KEYUP;
 }
 
 float deltaY = 0;

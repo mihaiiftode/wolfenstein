@@ -21,7 +21,12 @@ private:
     sre::Camera * camera;
 
 
-	glm::vec3 right;
+	glm::vec3 rightVector;
+
+	bool forward;
+	bool back;
+	bool left;
+	bool right;
 
 	float oldRotation;
 	glm::vec3 oldPosition;
