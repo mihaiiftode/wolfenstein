@@ -27,8 +27,5 @@ private:
 	bool back;
 	bool left;
 	bool right;
-
-	float oldRotation;
-	glm::vec3 oldPosition;
 };
 

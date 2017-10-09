@@ -34,13 +34,8 @@ void FirstPersonController::update(float deltaTime)
 	if (right)
 		position += rightVector * deltaTime;
 
-
 	auto view = lookAt(position, position + direction, {0, 1, 0});
 	camera->setViewTransform(view);
-	if (rotation != oldRotation)
-		oldRotation = rotation;
-	if (position != oldPosition)
-		oldPosition = position;
 }
 
 void FirstPersonController::onKey(SDL_Event& event)
