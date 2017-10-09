@@ -5,27 +5,27 @@
 #include <SDL_events.h>
 #include "sre/Camera.hpp"
 
-class FirstPersonController {
+class FirstPersonController
+{
 public:
-    explicit FirstPersonController(sre::Camera * camera);
+	explicit FirstPersonController(sre::Camera* camera);
 
-    void update(float deltaTime);
-    void onKey(SDL_Event& event);
-    void onMouse(SDL_Event &event);
+	void update(float deltaTime);
+	void onKey(SDL_Event& event);
+	void onMouse(SDL_Event& event);
 
-    void setInitialPosition(glm::vec2 position, float rotation);
+	void setInitialPosition(glm::vec2 position, float rotation);
 
-    float rotation = 0;
-    glm::vec3 position;
+	float rotation = 0;
+	glm::vec3 position;
 private:
-    sre::Camera * camera;
-
+	sre::Camera* camera;
 
 	glm::vec3 rightVector;
 
-	bool forward;
-	bool back;
-	bool left;
-	bool right;
+	bool forward = false;
+	bool back = false;
+	bool left = false;
+	bool right = false;
+	float speed = 3.0f;
 };
-
