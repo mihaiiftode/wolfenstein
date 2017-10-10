@@ -97,8 +97,7 @@ void Wolf3D::addCube(std::vector<glm::vec3>& vertexPositions, std::vector<glm::v
 	glm::vec2 tileSizeWithBorder(65, 65);
 
 	int row = 42;
-	if (2 * type % 8 != 0)
-		row -= type / 8;
+	row -= type / 8;
 
 	glm::vec2 min = vec2(tileSizeWithBorder.x * 2 * (type % 8), row * tileSizeWithBorder.y) / textureSize;
 	glm::vec2 max = min + tileSize / textureSize;
