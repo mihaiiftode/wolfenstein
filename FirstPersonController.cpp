@@ -14,8 +14,6 @@ FirstPersonController::FirstPersonController(sre::Camera* camera)
 	: camera(camera)
 {
 	camera->setPerspectiveProjection(45, 0.1f, 1000);
-	camera->lookAt(vec3{0,0,0}, vec3{0,0,-1}, vec3{0,1,0});
-	position = vec3(0, 0, 0);
 }
 
 
@@ -23,7 +21,6 @@ void FirstPersonController::update(float deltaTime)
 {
 	vec3 direction(cos(radians(rotation)), 0, sin(radians(rotation)));
 	rightVector = vec3(cos(radians(rotation + 90)), 0, sin(radians(rotation + 90)));
-	std::cout << "forward: " << forward << "right: " << right << std::endl;
 
 	if (forward)
 		position += direction * deltaTime * speed;
